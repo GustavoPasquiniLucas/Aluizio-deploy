@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
 
-//porta do servidor
-const porta = process.env.PORT || 4040
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static('./'))
 
-//configurar o transporte de dados do formulário para script
-app.use(express.urlencoded({extended:false}))
-//exportando a variavél porta e app
-module.exports = {app, porta}
+const consign = require('consign')
+
+consign().include('./routes').into(app)
+
+const porta = process.env.PORT ||  4040
+
+module.exports = { app, porta }

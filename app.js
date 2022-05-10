@@ -1,10 +1,12 @@
-const servidor = require('./config/servidor.js')
-const app = servidor.app
-const porta = servidor.porta
+const servidor = require('./config/servidor')
+var app = servidor.app
+var porta = servidor.porta
 
+// rota de exemplo para testar o servidor
+app.get('/', (req, res) => {
+    res.send('Servidor funcionando em http://localhost:' + porta)
+})
 
-var form = require('./routes/form')(app)
-var profs = require('./routes/profs')(app)
-app.listen(porta, ()=>{
-    console.log('Servidor em http://localhost:' + porta)
+app.listen(porta, () => {
+    console.log('http://localhost:' + porta)
 })
